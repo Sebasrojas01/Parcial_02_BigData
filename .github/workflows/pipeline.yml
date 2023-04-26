@@ -47,4 +47,8 @@ jobs:
           source env/bin/activate
           pip install -r requeriments.txt
           
+      - name: Update code
+        run: |
+          source env/bin/activate
+          aws s3 cp periodico job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
  
