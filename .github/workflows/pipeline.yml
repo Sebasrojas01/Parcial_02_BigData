@@ -49,6 +49,6 @@ jobs:
       - name: Update code
         run: |
           source env/bin/activate
-          aws s3 cp Job\ scripts/periodico_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
-          aws s3 cp Job\ scripts/periodico2_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
+          aws s3 cp ParcialBigData2/periodico_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
+          aws s3 cp ParcialBigData2/periodico2_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
  
