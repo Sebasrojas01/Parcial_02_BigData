@@ -43,7 +43,7 @@ jobs:
           
           pip install -r requirements.txt
           
-          flake8 Job\ scripts/periodico_job.py
+          flake8 ParcialBigData2/periodico_job.py
           
           pytest
       - name: Update code
