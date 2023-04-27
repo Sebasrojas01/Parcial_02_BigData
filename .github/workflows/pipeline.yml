@@ -41,7 +41,7 @@ jobs:
           virtualenv env
           source env/bin/activate
           
-          pip install -r requirements.txt
+          pip install -r ParcialBigData2/requirements.txt
           
           flake8 ParcialBigData2/periodico_job.py
           
