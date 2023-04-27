@@ -27,25 +27,28 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.8'
-
-      - name: Listar archivos
-        run: |
-          ls
-          
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
-        with:
-         aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-         aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
-         aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
-         aws-region: us-east-1
-    
-      - name: Install virtualenv, Flake8 review, Pytest test
+        with: 
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY_ID}}
+          aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
+          aws-region: us-east-1
+          
+      - name: Install virtualenv and requeriments, Flake8 Review and Pytest Execution
         run: |
           pip install virtualenv
           virtualenv env
           source env/bin/activate
-          pip install -r requeriments.txt
           
-
+          pip install -r requirements.txt
+          
+          flake8 Job\ scripts/periodico_job.py
+          
+          pytest
+      - name: Update code
+        run: |
+          source env/bin/activate
+          aws s3 cp Job\ scripts/periodico_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
+          aws s3 cp Job\ scripts/periodico2_job.py s3://aws-glue-assets-251368703103-us-east-1/scripts/
  
